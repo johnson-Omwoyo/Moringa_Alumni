@@ -1,0 +1,35 @@
+.navbar .logo h1 {
+  font-family: sans-serif;
+  cursor: pointer;
+  color: #101f3c;
+  font-weight: 600;
+}
+.navbar .logo p {
+  font-family: sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  margin-top: -6px;
+}
+.navbar .logo {
+  max-width: min-content;
+}
+.navbar-link {
+  font-size: 120px;
+  color: #101f3c;
+}
+.login-btn {
+  border: #fa5105 solid 1px;
+}
+.register-btn {
+  background: #fa5105;
+  color: white;
+}
+
+.login-btn:hover {
+  background: #f09f7a;
+  color: white;
+}
+.register-btn:hover {
+  background: #f09f7a;
+  color: white;
+}

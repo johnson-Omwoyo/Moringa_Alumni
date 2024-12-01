@@ -1,0 +1,8 @@
+.hero-texts h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 800;
+  color: #101f3c;
+}
+.hero-part {
+  background: linear-gradient(to bottom, white, rgb(221, 220, 220));
+}
