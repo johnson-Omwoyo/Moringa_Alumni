@@ -6,3 +6,146 @@
 .hero-part {
   background: linear-gradient(to bottom, white, rgb(221, 220, 220));
 }
+.featured-event h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  color: #101f3c;
+}
+.featured-event h6 {
+  color: #fa5105;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+.featured-event p {
+  font-size: 15px;
+}
+.why-join h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  color: #101f3c;
+}
+.why-join p {
+  font-size: 14px;
+}
+.reasons {
+  max-width: 320px;
+}
+.reasons .title {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 900;
+}
+.reasons i {
+  color: #fa5105;
+}
+.reasons .describe {
+  font-size: small;
+}
+.numbers .number {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+}
+.career-opportunity h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  color: #101f3c;
+}
+.career-opportunity p {
+  font-size: 15px;
+}
+.opportunity-card h5 {
+  font-size: 15px;
+}
+.opportunity-card p {
+  color: grey;
+  font-size: 12px;
+}
+.work-title {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+.employer-profile {
+  font-family: "Times New Roman", Times, serif;
+  background: #101f3c;
+  max-height: fit-content;
+  max-width: fit-content;
+  color: white;
+  font-weight: 1000;
+}
+.opportunity-card {
+  border: #dbd9d9 0.5px dotted;
+}
+.upcoming-title {
+  color: #101f3c;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+}
+.apply-now {
+  color: #fa5105;
+  border: #fa5105 solid 1px;
+  background: white;
+  transition: all 0.3s;
+}
+.apply-now:hover {
+  background: grey;
+  color: white;
+  border: grey 1px dotted;
+}
+.bookmark {
+  color: #fa5105;
+  border: none;
+}
+.employer-name {
+  font-weight: 100;
+  margin-top: 0px;
+}
+.load-more {
+  background: #fa5105;
+  color: white;
+  transition: all 0.4s;
+}
+.load-more:hover {
+  color: black;
+  background: white;
+  border: #fa5105 1px solid;
+}
+.read-more {
+  color: #fa5105;
+  text-decoration: none;
+}
+.news-title {
+  color: #101f3c;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+}
+
+.news-details {
+  color: grey;
+  font-size: 14px;
+}
+.news-brief {
+  font-size: 15px;
+  line-height: 22px;
+}
+.news-letter {
+  color: white;
+  background: #131313;
+}
+.dont-miss {
+  font-family: "Times New Roman", Times, serif;
+}
+.email-sub {
+  border: rgb(109, 106, 106) 1px solid;
+  max-width: max-content;
+  background: white;
+}
+.subscribe {
+  color: white;
+  background: #fa5105;
+  transition: all 0.4s;
+}
+
+.subscribe:hover {
+  border: #fa5105 1px solid;
+  color: #101f3c;
+}

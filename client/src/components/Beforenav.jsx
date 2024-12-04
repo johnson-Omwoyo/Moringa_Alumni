@@ -20,7 +20,7 @@ function Beforenav() {
                 {" "}
                 <span>Help Center</span>
                 <span>Blog</span>
-                <span>Carrier</span>
+                <span>Career</span>
               </div>
             </div>
           </div>

@@ -56,11 +56,8 @@ function Navbar() {
               </li>
             </ul>
             <div className="">
-              <button className="btn login-btn me-4 rounded-pill px-4">
-                login
-              </button>
               <button className="btn register-btn rounded-pill">
-                Join Now
+                Join Us <i class="fa-solid fa-right-from-bracket"></i>
               </button>
             </div>
           </div>
