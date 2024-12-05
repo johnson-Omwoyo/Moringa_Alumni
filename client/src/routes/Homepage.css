@@ -1,3 +1,7 @@
+.btn {
+  font-family: "Stylish", serif;
+  font-weight: bold;
+}
 .hero-texts h1 {
   font-family: "Times New Roman", Times, serif;
   font-weight: 800;
@@ -73,7 +77,8 @@
   font-weight: 1000;
 }
 .opportunity-card {
-  border: #dbd9d9 0.5px dotted;
+  border: #101f3c 0.5px dotted;
+  background: #fdfcfc;
 }
 .upcoming-title {
   color: #101f3c;
@@ -148,4 +153,24 @@
 .subscribe:hover {
   border: #fa5105 1px solid;
   color: #101f3c;
+}
+.even {
+  background: linear-gradient(to left, white, #faeae2);
+}
+.odd {
+  background: linear-gradient(to right, white, #faeae2);
+}
+.vc-name {
+  font-family: "Dancing Script", cursive;
+}
+.view-story .btn {
+  border: #101f3c dotted 2px;
+  color: black;
+  transition: all 0.4s;
+}
+
+.view-story .btn:hover {
+  background: #fa5105;
+  color: rgb(255, 255, 255);
+  border: white 2px dotted;
 }

@@ -99,7 +99,7 @@ function Homepage() {
           </div>
         </div>
       </div>
-      <div className="row py-5">
+      <div className="row py-5 ">
         <div className="col"></div>
         <div className="col-12 col-md-4 text-center featured-event">
           <h6 className="">FEATURED EVENTS</h6>
@@ -117,13 +117,34 @@ function Homepage() {
         </div>
         <div className="col"></div>
       </div>
-      <div className="row">
+      <div className="row ">
         <div className="col">
           <img
             style={{ objectFit: "cover", maxHeight: "420px" }}
             src="https://i.pinimg.com/736x/b7/0c/22/b70c22b8bb937d08db2dd0a52d9cb265.jpg"
             alt=""
-            className="img-fluid w-100 mb-5"
+            className="img-fluid w-100 mb-5 p-0 m-0"
+          />
+        </div>
+      </div>
+      <div className="row px-4 d-flex justify-content-around even p-5">
+        <div className="col col-md-4 me-2 d-flex flex-column justify-content-center career-opportunity ">
+          <h3 className="fs-6">The grandmaster talk</h3>
+          <h1 className=" mb-4 display-4">Most treasured wisdom</h1>
+          <p className="mb-4">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum
+            suscipit sunt earum nisi. Molestiae expedita exercitationem facilis
+            eaque ipsa, aut facere culpa quasi dolorum necessitatibus corrupti
+            quae quam minima officia?
+          </p>
+          <p className="vc-name fs-1">Jaymson</p>
+          <h5>TM. Jaymson</h5>
+        </div>
+        <div className="col-12 col-md-4">
+          <img
+            src="https://a.storyblok.com/f/191576/1200x800/a3640fdc4c/profile_picture_maker_before.webp"
+            alt=""
+            className="img-fluid rounded shadow-lg"
           />
         </div>
       </div>
@@ -177,6 +198,7 @@ function Homepage() {
                 </div>
               ))}
             </div>
+
             <div className="row my-4">
               <div className="col text-center">
                 <button className="btn load-more px-md-5 py-3 rounded-pill">
@@ -186,8 +208,42 @@ function Homepage() {
             </div>
           </div>
         </div>
+      </div>{" "}
+      <div className="row px-4 d-flex justify-content-around odd p-md-2">
+        {" "}
+        <div className="col col-md-4">
+          <img
+            src="https://st5.depositphotos.com/62628780/64599/i/1600/depositphotos_645998282-stock-photo-portrait-beauty-selfie-black-woman.jpg"
+            alt=""
+            className="shadow-lg img img-fluid rounded"
+          />
+        </div>
+        <div className="col-12 col-md-4 me-2 d-flex flex-column justify-content-center career-opportunity ">
+          <h3 className="fs-6">Success Stories</h3>
+          <h1 className=" mb-4 display-4">Sonia Sony</h1>
+          <p className="mb-4">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum
+            suscipit sunt earum nisi. Molestiae expedita exercitationem facilis
+            eaque ipsa, aut facere culpa quasi dolorum necessitatibus corrupti
+            quae quam minima officia?
+          </p>
+          <div className="d-flex justify-content-around view-story">
+            <button className="btn rounded-pill ">
+              View Story <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button className="btn rounded-pill">
+              <i class="fa-brands fa-facebook"></i>
+            </button>{" "}
+            <button className="btn rounded-pill">
+              <i class="fa-brands fa-x-twitter"></i>{" "}
+            </button>{" "}
+            <button className="btn rounded-pill">
+              <i class="fa-brands fa-linkedin"></i>{" "}
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="row my-3">
+      <div className="row my-3 ">
         <div className="col"></div>
         <div className="col-12 col-md-3 text-center career-opportunity">
           <h1>Latest News</h1>
@@ -233,15 +289,15 @@ function Homepage() {
           </button>
         </div>
       </div>
-      <div className="row my-5 px-md-5">
+      <div className="row py-5 px-md-5 even">
         <div className="col d-flex justify-content-between">
           <h1 className="upcoming-title">Upcoming events</h1>
-          <button className="btn load-more rounded-pill px-md-5">
+          <button className="btn load-more rounded-pill px-md-5 py-3">
             View All
           </button>
         </div>
       </div>
-      <div className="row mb-5">
+      <div className="row pb-5 even">
         <div className="col">
           <div className="container">
             <div className="row  d-flex justify-content-around">
