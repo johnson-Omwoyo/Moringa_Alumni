@@ -1,0 +1,55 @@
+.main-col {
+  border: #b4b3b3 1px solid;
+}
+.group-prof {
+  width: fit-content;
+  font-family: "Times New Roman", Times, serif;
+  max-width: 120px;
+  color: aliceblue;
+  background: #000;
+}
+.groups-categories {
+  max-width: fit-content;
+  background: #dfdddd;
+}
+.active-category {
+  background: #b4b3b3;
+  cursor: not-allowed;
+}
+.join-group {
+  background: #b4b3b3;
+}
+.join-group:hover {
+  border: #b4b3b3 solid 1px;
+}
+.account-owner {
+  font-family: sans-serif;
+  font-weight: 600;
+}
+.info-account {
+  color: rgb(70, 70, 70);
+  font-size: 12px;
+}
+.group-name {
+  font-family: sans-serif;
+  font-weight: 700;
+}
+.group-category {
+  cursor: not-allowed;
+  border: 2px dotted #000;
+}
+.groups-container {
+  overflow-y: scroll;
+
+  height: 420px;
+}
+.group-members {
+  overflow-y: scroll;
+  height: 240px;
+}
+.groups-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+.group-members::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
