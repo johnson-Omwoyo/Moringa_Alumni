@@ -1,6 +1,6 @@
 import Homepage from "./routes/Homepage";
 import App from "./App";
-import Connect from "./routes/Connect";
+import Cohorts from "./routes/Cohorts";
 
 const routee = [
   {
@@ -9,7 +9,7 @@ const routee = [
     errorElement: "Error Page",
     children: [
       { path: "/", element: <Homepage /> },
-      { path: "/connect", element: <Connect /> },
+      { path: "/cohorts", element: <Cohorts /> },
     ],
   },
 ];

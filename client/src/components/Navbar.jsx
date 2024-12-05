@@ -31,19 +31,19 @@ function Navbar() {
             id="navbarNavDropdown"
           >
             <ul class="navbar-nav gap-md-5 mx-md-5">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+              <li class="nav-item" onClick={() => navigate("/")}>
+                <a class="nav-link active" href="">
                   Home
                 </a>
               </li>{" "}
               <li
                 class="nav-item"
                 onClick={() => {
-                  navigate("/connect");
+                  navigate("/cohorts");
                 }}
               >
-                <a class="nav-link" href="#">
-                  Connect
+                <a class="nav-link" href="">
+                  Cohorts
                 </a>
               </li>
               <li class="nav-item">
@@ -53,12 +53,12 @@ function Navbar() {
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  Cohorts
+                  Discussions
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  Alumni story
+                  Alumni Story
                 </a>
               </li>
             </ul>
