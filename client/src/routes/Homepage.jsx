@@ -87,9 +87,9 @@ function Homepage() {
                   Learn More
                 </button>
               </div>
-              <div className="col">
+              <div className="col bg ">
                 <img
-                  className="img-fluid rounded w-100 h-100 "
+                  className="img-fluid rounded w-100 h-100  "
                   style={{ objectFit: "cover" }}
                   src={heroImage}
                   alt=""
@@ -118,16 +118,19 @@ function Homepage() {
         <div className="col"></div>
       </div>
       <div className="row ">
-        <div className="col">
+        <div className="col position-relative">
           <img
             style={{ objectFit: "cover", maxHeight: "420px" }}
-            src="https://i.pinimg.com/736x/b7/0c/22/b70c22b8bb937d08db2dd0a52d9cb265.jpg"
+            src="https://summer.yale.edu/sites/default/files/2017_07_25_yale_summer_session_lavitt_41_mal_0604_55_2_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0.jpg"
             alt=""
-            className="img-fluid w-100 mb-5 p-0 m-0"
+            className="img-fluid w-100  p-0 m-0"
           />
+          <div className="position-absolute bottom-0 start-3 p-5 bg-dark">
+            s
+          </div>
         </div>
       </div>
-      <div className="row px-4 d-flex justify-content-around even p-5">
+      <div className="row px-4 d-flex justify-content-around even p-5 gap-3 ">
         <div className="col col-md-4 me-2 d-flex flex-column justify-content-center career-opportunity ">
           <h3 className="fs-6">The grandmaster talk</h3>
           <h1 className=" mb-4 display-4">Most treasured wisdom</h1>
@@ -140,15 +143,15 @@ function Homepage() {
           <p className="vc-name fs-1">Jaymson</p>
           <h5>TM. Jaymson</h5>
         </div>
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-4 ">
           <img
-            src="https://a.storyblok.com/f/191576/1200x800/a3640fdc4c/profile_picture_maker_before.webp"
+            src="https://photos.peopleimages.com/picture/202307/2709813-black-man-business-and-selfie-with-a-smile-on-face-of-an-influencer-person-at-work.-portrait-of-an-african-guy-or-entrepreneur-with-job-satisfaction-and-pride-for-social-media-profile-picture-update-fit_400_400.jpg"
             alt=""
             className="img-fluid rounded shadow-lg"
           />
         </div>
       </div>
-      <div className="row my-3">
+      <div className="row py-3 opps">
         <div className="col"></div>
         <div className="col-12 col-md-3 text-center career-opportunity">
           <h1>Career Opportunity</h1>
@@ -156,7 +159,7 @@ function Homepage() {
         </div>
         <div className="col"></div>
       </div>
-      <div className="row">
+      <div className="row opps">
         <div className="col">
           <div className="container py-5">
             <div className="row d-flex justify-content-between ">
@@ -213,7 +216,7 @@ function Homepage() {
         {" "}
         <div className="col col-md-4">
           <img
-            src="https://st5.depositphotos.com/62628780/64599/i/1600/depositphotos_645998282-stock-photo-portrait-beauty-selfie-black-woman.jpg"
+            src="https://media.istockphoto.com/id/1394347360/photo/confident-young-black-businesswoman-standing-at-a-window-in-an-office-alone.jpg?s=612x612&w=0&k=20&c=tOFptpFTIaBZ8LjQ1NiPrjKXku9AtERuWHOElfBMBvY="
             alt=""
             className="shadow-lg img img-fluid rounded"
           />
@@ -368,32 +371,6 @@ function Homepage() {
             <p className="name">{number.name}</p>
           </div>
         ))}
-      </div>
-      <div className="row py-5 news-letter px-md-5 d-flex align-items-center">
-        <div className="col-12 col-md-5 ">
-          <h1 className="dont-miss">
-            Dont miss Our weekly updates about Moringa's alumni Story
-          </h1>
-          <a
-            href="https://johnson-omwoyo.vercel.app"
-            target="blank"
-            className=""
-          >
-            @TheDeveloper
-          </a>
-        </div>
-        <div className="col-12 col-md-5 d-flex justify-content-end ">
-          <form className="email-sub p-3 rounded-pill d-flex">
-            <input
-              className="form-control"
-              type="email"
-              placeholder="Enter the email..."
-            />
-            <button className="btn subscribe mx-2" type="submit">
-              Subscribe
-            </button>
-          </form>
-        </div>
       </div>
     </div>
   );

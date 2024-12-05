@@ -1,8 +1,10 @@
 import React from "react";
 import Beforenav from "./Beforenav";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   return (
     <div>
       <Beforenav />
@@ -34,7 +36,12 @@ function Navbar() {
                   Home
                 </a>
               </li>{" "}
-              <li class="nav-item">
+              <li
+                class="nav-item"
+                onClick={() => {
+                  navigate("/connect");
+                }}
+              >
                 <a class="nav-link" href="#">
                   Connect
                 </a>

@@ -1,0 +1,22 @@
+.footer .logo {
+  max-width: max-content;
+}
+
+.footer .logo h1 {
+  font-family: sans-serif;
+  cursor: pointer;
+  color: #101f3c;
+  font-weight: 600;
+  margin-top: 0px;
+}
+.footer .logo p {
+  font-family: sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  margin-top: -6px;
+}
+
+.footer h3 {
+  color: #101f3c;
+  font-weight: 800;
+}
