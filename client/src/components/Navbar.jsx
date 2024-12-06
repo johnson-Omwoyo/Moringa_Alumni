@@ -46,18 +46,18 @@ function Navbar() {
                   Cohorts
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li class="nav-item " onClick={() => navigate("/events")}>
+                <a class="nav-link" href="">
                   Events
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li class="nav-item" onClick={()=>navigate("/discussions")}>
+                <a class="nav-link" href="">
                   Discussions
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li class="nav-item" onClick={()=>navigate("/alumni-stories")}>
+                <a class="nav-link" href="">
                   Alumni Story
                 </a>
               </li>
