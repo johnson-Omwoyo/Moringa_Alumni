@@ -53,3 +53,17 @@
 .group-members::-webkit-scrollbar {
   display: none; /* Hide scrollbar */
 }
+.text-input {
+}
+.text-input input {
+  border: #000 solid 1px;
+}
+.message-container {
+  width: max-content;
+  max-width: 70%;
+  background: brown;
+  color: white;
+}
+.your-message{
+  background: green;
+}
