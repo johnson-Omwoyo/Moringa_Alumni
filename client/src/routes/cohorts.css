@@ -41,7 +41,7 @@
 .groups-container {
   overflow-y: scroll;
 
-  height: 420px;
+  height: 560px;
 }
 .group-members {
   overflow-y: scroll;
@@ -61,9 +61,9 @@
 .message-container {
   width: max-content;
   max-width: 70%;
-  background: brown;
+  background: #101f3c;
   color: white;
 }
-.your-message{
-  background: green;
+.your-message {
+  background: brown;
 }

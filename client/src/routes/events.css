@@ -1,0 +1,26 @@
+.available-events {
+  color: #101f3c;
+  text-decoration: underline;
+  font-family: sans-serif;
+  font-weight: 700;
+}
+.available-events::after {
+  height: 2px;
+  background: #101f3c;
+  width: 12px;
+}
+.events-container {
+  background: #c9d0dd;
+  height: 763px;
+  overflow-y: scroll;
+}
+.events-container::-webkit-scrollbar {
+  display: none;
+}
+.event-container {
+    height: max-content;
+  max-width: 320px;
+  border: #000 1px dotted;
+
+}
+

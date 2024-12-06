@@ -51,9 +51,9 @@ function Navbar() {
                   Events
                 </a>
               </li>
-              <li class="nav-item" onClick={()=>navigate("/discussions")}>
+              <li class="nav-item" onClick={()=>navigate("/news")}>
                 <a class="nav-link" href="">
-                  Discussions
+                  News
                 </a>
               </li>
               <li class="nav-item" onClick={()=>navigate("/alumni-stories")}>

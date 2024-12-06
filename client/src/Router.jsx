@@ -3,7 +3,7 @@ import App from "./App";
 import Cohorts from "./routes/Cohorts";
 import Events from "./routes/Events";
 import Stories from "./routes/Stories";
-import Discussions from "./routes/Discussions";
+import News from "./routes/News";
 
 const routee = [
   {
@@ -22,8 +22,8 @@ const routee = [
         element: <Stories />,
       },
       {
-        path: "/discussions",
-        element: <Discussions />,
+        path: "/News",
+        element: <News />,
       },
     ],
   },
