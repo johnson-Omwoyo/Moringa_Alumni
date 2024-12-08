@@ -11,12 +11,15 @@ function Stories() {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="row p-3 p-md-5 pb-0 pb-md-0 page-name-container">
         <div className="col">
           {" "}
           <p className="home-page-name">
-            <span className="back-home" onClick={() => navigate("/")}>home</span>/alumni-stories
+            <span className="back-home" onClick={() => navigate("/")}>
+              home
+            </span>
+            /alumni-stories
           </p>
           <h1 className="page-name">ALUMNI STORIES</h1>
           <div className="d-flex gap-1">
@@ -45,10 +48,10 @@ function Stories() {
           </div>
         </div>
       </div>
-      <div className="row m-4 gap-3 the-stories">
+      <div className="row m-4 gap-4  the-stories d-flex justify-content-center ">
         {" "}
         {news.map((theNew) => (
-          <div style={{ maxWidth: "420px" }} class=" card p-0 col-md-4 ">
+          <div style={{ maxWidth: "420px" }} class=" card p-0 col-md-3 ">
             <img
               class="card-img-top"
               src="https://i.pinimg.com/736x/f1/bc/f3/f1bcf36650f8d76222fcccd450c8de55.jpg"
