@@ -33,55 +33,50 @@ function Events() {
 
   return (
     <div className="container">
-      <div className="row m-0">
-        {" "}
-        <div className="row p-3 p-md-5 pb-0 pb-md-0 page-name-container">
-          <div className="col">
-            {" "}
-            <p className="home-page-name">
-              <span className="back-home" onClick={() => navigate("/")}>
-                home
-              </span>
-              /events
-            </p>
-            <h1 className="page-name">EVENTS</h1>
-              <div className="d-flex justify-content-between">
+      {" "}
+      <div className="row p-3 p-md-5 pb-0 pb-md-0 page-name-container">
+        <div className="col">
+          {" "}
+          <p className="home-page-name">
+            <span className="back-home" onClick={() => navigate("/")}>
+              home
+            </span>
+            /events
+          </p>
+          <h1 className="page-name">EVENTS</h1>
+          <div className="d-flex justify-content-between">
             <div className="d-flex gap-1">
-                <div
-                  className={
-                    selected == "all"
-                      ? "d-flex flex-column align-items-center justify-content-center p-3 selected"
-                      : "d-flex flex-column align-items-center justify-content-center page-nav p-3"
-                  }
-                  onClick={() => changeSelected("all")}
-                >
-                  <i class="fa-solid fa-globe"></i>
-                  <p>All Events</p>
-                </div>
-                <div
-                  className={
-                    selected == "top"
-                      ? "d-flex flex-column align-items-center justify-content-center p-3  selected"
-                      : "d-flex flex-column align-items-center justify-content-center page-nav p-3"
-                  }
-                  onClick={() => setSelected("top")}
-                >
-                  <i class="fa-solid fa-calendar-day"></i> <p>Top Events</p>
-                </div>
+              <div
+                className={
+                  selected == "all"
+                    ? "d-flex flex-column align-items-center justify-content-center p-3 selected"
+                    : "d-flex flex-column align-items-center justify-content-center page-nav p-3"
+                }
+                onClick={() => changeSelected("all")}
+              >
+                <i class="fa-solid fa-globe"></i>
+                <p>All Events</p>
               </div>
-              <input
-                className="form-control w-50 rounded search-event"
-                type="text"
-                placeholder=" Name,Location,Keyword..."
-              />
+              <div
+                className={
+                  selected == "top"
+                    ? "d-flex flex-column align-items-center justify-content-center p-3  selected"
+                    : "d-flex flex-column align-items-center justify-content-center page-nav p-3"
+                }
+                onClick={() => setSelected("top")}
+              >
+                <i class="fa-solid fa-calendar-day"></i> <p>Top Events</p>
+              </div>
             </div>
+            <input
+              className="form-control rounded search-event"
+              type="text"
+              placeholder=" Name,Location,Keyword..."
+            />
           </div>
         </div>
       </div>
-      <div className="row py-3">
-        <div className="col "></div>
-      </div>
-      <div className="row events-container p-3  p-md-5 gap-4 d-flex justify-content-center the-stories rounded h-100">
+      <div className="row events-container p-3  p-md-5 gap-4 d-flex justify-content-center the-stories rounded ">
         {/* <div className="col">No Events found</div> */}
         {events.map((event) => (
           <div className="col-5 col-md-4 event-container card p-0">
