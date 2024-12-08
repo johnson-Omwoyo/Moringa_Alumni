@@ -1,0 +1,36 @@
+.story-comments {
+  color: #101f3c;
+  font-size: 14px;
+  cursor: pointer;
+}
+.story-comments:hover {
+  color: #fa5105;
+}
+.page-name-container {
+  background: #101f3c;
+  color: whitesmoke;
+}
+.home-page-name {
+  color: #fa621c;
+}
+.page-name {
+  font-family: monospace;
+  font-weight: 900;
+}
+.selected {
+  background: grey;
+  cursor: not-allowed;
+}
+.page-nav {
+  cursor: pointer;
+}
+.the-stories {
+  overflow-y: scroll;
+  max-height: 720px;
+}
+.the-stories::-webkit-scrollbar {
+  display: none;
+}
+.back-home:hover {
+  color: white;
+cursor:pointer}
