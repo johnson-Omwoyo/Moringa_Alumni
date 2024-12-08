@@ -48,23 +48,28 @@ function Stories() {
           </div>
         </div>
       </div>
-      <div className="row m-4 gap-4  the-stories d-flex justify-content-center ">
-        {" "}
+      <div className="the-stories">
         {news.map((theNew) => (
-          <div style={{ maxWidth: "420px" }} class=" card p-0 col-md-3 ">
-            <img
-              class="card-img-top"
-              src="https://i.pinimg.com/736x/f1/bc/f3/f1bcf36650f8d76222fcccd450c8de55.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title news-title">Title of the story headline</h5>
-              <p className="news-details">
-                By John, on Nov 23rd 2024 | 8 days ago
-              </p>
-              <p class="card-text news-brief">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+          <div className="row py-3 news-container d-flex justify-content-center">
+            <div className="col-12 col-md-3 ">
+              <img
+                className="img-fluid news-photo"
+                src="https://i.pinimg.com/736x/07/55/0f/07550fbe8d55a7208b91a04872d31a65.jpg"
+                alt=""
+              />
+            </div>
+            <div className="col-md-6  d-flex flex-column justify-content-center ">
+              {" "}
+              <div>
+                <p className="news-details"> 12 Nov</p>
+              </div>
+              <h3 className="news-title">
+                This will be the presentation of the story title
+              </h3>
+              <p className="news-brief">
+                This will now be the presentation of the text that will have
+                some part of the news then im going to add some link below it
+                named readmore for simpl reading more
               </p>
               <div className="d-flex justify-content-between">
                 <a href="#" class="read-more">

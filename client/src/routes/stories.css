@@ -26,7 +26,7 @@
 }
 .the-stories {
   overflow-y: scroll;
-  max-height: 800px;
+  max-height: 760px;
 }
 .the-stories::-webkit-scrollbar {
   display: none;
