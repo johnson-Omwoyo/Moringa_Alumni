@@ -23,4 +23,8 @@
   border: #000 1px dotted;
 
 }
-
+.search-event{
+  border: #000 1px solid;
+  max-height: 48px;
+  max-width: 320px;
+}
