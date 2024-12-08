@@ -152,7 +152,7 @@ function Homepage() {
       <div className="row py-3 opps">
         <div className="col"></div>
         <div className="col-12 col-md-3 text-center career-opportunity">
-          <h1>Career Opportunity</h1>
+          <h1>Career Opportunities</h1>
           <p>Note no favours apply to be considerd by the employer</p>
         </div>
         <div className="col"></div>
@@ -200,13 +200,7 @@ function Homepage() {
               ))}
             </div>
 
-            <div className="row my-4">
-              <div className="col text-center">
-                <button className="btn load-more px-md-5 py-3 rounded-pill">
-                  Load more
-                </button>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>{" "}
