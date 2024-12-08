@@ -28,6 +28,14 @@ function Events() {
   return (
     <div className="container">
       <div className="row py-3">
+        <div className="col-12 position-relative p-0">
+          <img
+            style={{ objectFit: "cover", maxHeight: "420px" }}
+            src="https://i.ytimg.com/vi/oqJRVZdNEY8/maxresdefault.jpg"
+            alt=""
+            className="img-fluid w-100  p-0 m-0 mb-5"
+          />
+        </div>
         <div className="col-12 col-md-6 d-flex justify-content-between">
           <h1 className="available-events">Available Events</h1>
         </div>
@@ -39,7 +47,7 @@ function Events() {
           />
         </div>
       </div>
-      <div className="row events-container p-3  p-md-5 gap-4 d-flex  rounded">
+      <div className="row events-container p-3  p-md-5 gap-4 d-flex justify-content-center rounded h-100">
         {/* <div className="col">No Events found</div> */}
         {events.map((event) => (
           <div className="col-5 col-md-4 event-container card p-0">

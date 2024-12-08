@@ -117,17 +117,15 @@ function Homepage() {
         </div>
         <div className="col"></div>
       </div>
-      <div className="row ">
-        <div className="col position-relative">
+      <div className="row p-0 ">
+        <div className="col position-relative p-0">
           <img
             style={{ objectFit: "cover", maxHeight: "420px" }}
-            src="https://summer.yale.edu/sites/default/files/2017_07_25_yale_summer_session_lavitt_41_mal_0604_55_2_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0.jpg"
+            src="https://i.ytimg.com/vi/oqJRVZdNEY8/maxresdefault.jpg"
             alt=""
             className="img-fluid w-100  p-0 m-0"
           />
-          <div className="position-absolute bottom-0 start-3 p-5 bg-dark">
-            s
-          </div>
+      
         </div>
       </div>
       <div className="row px-4 d-flex justify-content-around even p-5 gap-3 ">
