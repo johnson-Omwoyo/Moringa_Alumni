@@ -67,3 +67,21 @@
 .your-message {
   background: brown;
 }
+.list-types {
+  background: #101f3c;
+  color: white;
+}
+.list-types p {
+  margin: 0;
+  cursor: pointer;
+}
+.list-types .selected {
+  background: #555e71;
+  cursor: not-allowed;
+}
+.private-cohort {
+  background: #f0f0f0;
+}
+.send-msg {
+  border: none;
+}
