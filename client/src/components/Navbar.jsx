@@ -51,19 +51,22 @@ function Navbar() {
                   Events
                 </a>
               </li>
-              <li class="nav-item" onClick={()=>navigate("/news")}>
+              <li class="nav-item" onClick={() => navigate("/news")}>
                 <a class="nav-link" href="">
                   News
                 </a>
               </li>
-              <li class="nav-item" onClick={()=>navigate("/alumni-stories")}>
+              <li class="nav-item" onClick={() => navigate("/alumni-stories")}>
                 <a class="nav-link" href="">
                   Alumni Story
                 </a>
               </li>
             </ul>
             <div className="">
-              <button className="btn register-btn rounded-pill">
+              <button
+                className="btn register-btn rounded-pill "
+                onClick={() => navigate("/register")}
+              >
                 Join Us <i class="fa-solid fa-right-from-bracket"></i>
               </button>
             </div>
