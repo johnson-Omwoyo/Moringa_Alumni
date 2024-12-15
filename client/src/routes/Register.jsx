@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./register.css";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -7,6 +7,12 @@ import animePhoto from "../assets/17f4ec064cad10da1739a11d9b293c09-removebg-prev
 
 function Register() {
   const navigate = useNavigate();
+  const [viewPassword, setViewPassword] = useState(false);
+  const [viewConfirmPassword, setViewConfirmPassword] = useState(false);
+
+  const handleChangeViewPassword = (field, setter) => {
+    setter(!field);
+  };
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(3, "Name so short")
@@ -23,8 +29,8 @@ function Register() {
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm password is required"),
   });
-  const onSubmit = (values) => {
-    console.log("Form data submitted:", values);
+  const handleRegister = (values) => {
+    console.log("The user details:", values);
   };
   const initialValues = {
     name: "",
@@ -50,12 +56,13 @@ function Register() {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={handleRegister}
           >
             {(formik) => (
               <form
                 className="form-group d-flex flex-column gap-4  rounded auth justify-content-center "
                 action=""
+                onSubmit={formik.handleSubmit}
               >
                 <div>
                   <Field
@@ -63,6 +70,7 @@ function Register() {
                     placeholder="Name.."
                     name="name"
                     className="form-control"
+                    onChange={formik.handleChange}
                   />{" "}
                   <ErrorMessage name="name" component="div" className="error" />
                 </div>
@@ -72,6 +80,7 @@ function Register() {
                     placeholder="Email.."
                     name="email"
                     className="form-control"
+                    onChange={formik.handleChange}
                   />{" "}
                   <ErrorMessage
                     name="email"
@@ -85,6 +94,7 @@ function Register() {
                     name="username"
                     placeholder="Username.."
                     className="form-control"
+                    onChange={formik.handleChange}
                   />{" "}
                   <ErrorMessage
                     name="username"
@@ -93,12 +103,27 @@ function Register() {
                   />
                 </div>
                 <div>
-                  <Field
-                    type="text"
-                    name="password"
-                    placeholder="Password.."
-                    className="form-control"
-                  />{" "}
+                  <div className="position-relative">
+                    <Field
+                      type={viewPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="Password.."
+                      className="form-control"
+                      onChange={formik.handleChange}
+                    />{" "}
+                    <div
+                      onClick={() =>
+                        handleChangeViewPassword(viewPassword, setViewPassword)
+                      }
+                      className="the-eye position-absolute  end-0 translate-middle-y px-4 "
+                    >
+                      {viewPassword ? (
+                        <i class="fa-regular fa-eye-slash"></i>
+                      ) : (
+                        <i class="fa-regular fa-eye"></i>
+                      )}
+                    </div>
+                  </div>
                   <ErrorMessage
                     name="password"
                     component="div"
@@ -106,12 +131,29 @@ function Register() {
                   />
                 </div>
                 <div>
+                <div className="position-relative">
                   <Field
-                    type="text"
+                    type={viewConfirmPassword ? "text" : "password"}
                     name="confirmpassword"
                     placeholder="Confirm Password.."
                     className="form-control"
+                    onChange={formik.handleChange}
                   />{" "}
+                  <div
+                    className="the-eye position-absolute  end-0 translate-middle-y px-4 "
+                    onClick={() =>
+                      handleChangeViewPassword(
+                        viewConfirmPassword,
+                        setViewConfirmPassword
+                      )
+                    }
+                  >
+                    {viewConfirmPassword ? (
+                      <i class="fa-regular fa-eye-slash"></i>
+                    ) : (
+                      <i class="fa-regular fa-eye"></i>
+                    )}
+                  </div></div>
                   <ErrorMessage
                     name="confirmpassword"
                     component="div"
@@ -124,6 +166,7 @@ function Register() {
                     name="profession"
                     placeholder="Profession.."
                     className="form-control"
+                    onChange={formik.handleChange}
                   />
                   <ErrorMessage
                     name="profession"
@@ -131,14 +174,14 @@ function Register() {
                     className="error"
                   />
                 </div>
-                <button type="submit" className="btn " >
+                <button type="submit" className="btn ">
                   Sign Up
                 </button>
               </form>
             )}
           </Formik>
         </div>
-        <div className="col">
+        <div className="col d-none d-md-inline">
           <img className="img-fluid" src={animePhoto} alt="" />
         </div>
       </div>

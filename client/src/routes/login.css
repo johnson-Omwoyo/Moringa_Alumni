@@ -30,5 +30,10 @@
 .reg input {
   border: grey 1px solid;
 }
-.reg .error{color: red;
+.reg .error {
+  color: red;
+}
+.the-eye {
+  top: 50%;
+  cursor: pointer;
 }
