@@ -7,12 +7,13 @@ import News from "./routes/News";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
 import The404 from "./components/The404";
+import ReadMore from "./routes/ReadMore";
 
 const routee = [
   {
     path: "/",
     element: <App />,
-    errorElement: <The404/>,
+    errorElement: <The404 />,
     children: [
       { path: "/", element: <Homepage /> },
       { path: "/cohorts", element: <Cohorts /> },
@@ -35,6 +36,10 @@ const routee = [
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/read-more",
+        element: <ReadMore />,
       },
     ],
   },
