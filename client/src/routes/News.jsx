@@ -70,7 +70,9 @@ function News() {
                 some part of the news then im going to add some link below it
                 named readmore for simpl reading more
               </p>
-              <p className="read-more">Read More</p>
+              <p className="read-more" onClick={() => navigate("/read-more")}>
+                Read More
+              </p>
             </div>
           </div>
         ))}

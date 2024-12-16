@@ -117,6 +117,10 @@
 .read-more {
   color: #fa5105;
   text-decoration: none;
+  cursor: pointer;
+}
+.read-more:active {
+  color: #101f3c;
 }
 .news-title {
   color: #101f3c;

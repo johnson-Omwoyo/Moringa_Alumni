@@ -1,0 +1,24 @@
+.alumni-news-blog .top-title {
+  color: #101f3c;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 800;
+}
+.alumni-news-blog .news-details {
+  color: #101f3c;
+}
+
+.news-details span {
+  color: grey;
+}
+.related-div {
+  background: rgb(250, 248, 248);
+  max-height: max-content;
+}
+.related-story{
+    transition: all 0.3s;
+}
+.related-story:hover {
+  text-decoration: underline;
+  color: #172c57;
+  cursor: pointer;
+}
