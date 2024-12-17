@@ -12,7 +12,8 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False, unique=False)
     email = db.Column(db.String, nullable=False, unique=True)
     username = db.Column(db.String, nullable=False, unique=True)
-    phone = db.Column(db.String, nullable=False, unique=True)
+    phone = db.Column(db.String, nullable=True, unique=True)
+    password = db.Column(db.String, nullable=False)
     course = db.Column(db.String, nullable=False, unique=False)
     year_of_graduation = db.Column(db.String, nullable=False, unique=False)
     gender = db.Column(db.String, nullable=True)
@@ -58,7 +59,7 @@ class Story(db.Model, SerializerMixin):
     posted_by = db.Column(db.String, nullable=False)
     text = db.Column(db.String, nullable=False)
     likes = db.Column(db.Integer)
-    comments = db.relationship("Comment", backref="story", lazy=True)
+    comments = db.relationship("StoryComment", backref="story", lazy=True)
     User_id = db.Column(db.Integer)
 
 
