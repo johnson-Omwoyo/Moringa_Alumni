@@ -24,9 +24,19 @@ class Cohort(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
-    messages = ""
-    members = "Foreign"
-    Admins = "Foreign"
+    messages = db.relationship("CohortMessage", backref="cohort", lazy=True)
+    members = db.relationship("UserCohort", backref="cohort", lazy=True)
+
+
+class Message(db.Model, SerializerMixin):
+    __tablename__ = "messages"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    text = db.Column(db.String, nullable=False)
+    date = db.Column(db.String)
+    time = db.Column(db.String)
+    deleted = db.Column(db.Boolean, default=False)
 
 
 class New(db.Model, SerializerMixin):
@@ -35,10 +45,9 @@ class New(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     text = db.Column(db.String, nullable=False)
-    image = "AI and get to know how to store the image"
-    posted_by = db.Column("The name of the one who posted the news")
-    date_posted = "This will have the date when the post was created"
-    deleted = db.Column(db.Boolean, default=False)
+    posted_by = db.Column(db.String, nullable=False)
+    date_posted = db.Column(db.String)
+    # deleted = db.Column(db.Boolean, default=False)
 
 
 class Story(db.Model, SerializerMixin):
@@ -49,8 +58,7 @@ class Story(db.Model, SerializerMixin):
     posted_by = db.Column(db.String, nullable=False)
     text = db.Column(db.String, nullable=False)
     likes = db.Column(db.Integer)
-    image = "this wiill be the image"
-    comments = "Foreign"
+    comments = db.relationship("Comment", backref="story", lazy=True)
     User_id = db.Column(db.Integer)
 
 
@@ -60,7 +68,6 @@ class Comment(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
-    story_id = db.Column(db.Integer, nullable=False)
     date_posted = db.Column(db.String)
     deleted = db.Column(db.Boolean, default=False)
 
@@ -69,8 +76,8 @@ class UserCohort(db.Model, SerializerMixin):
     __tablename__ = "users_cohorts"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, primary_key=True)
-    cohort_id = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    cohort_id = db.Column(db.Integer, db.ForeignKey("cohorts.id"), nullable=False)
     removed = db.Column(db.Integer, default=False)
     admin = db.Column(db.Boolean, default=False)
 
@@ -79,13 +86,13 @@ class StoryComment(db.Model, SerializerMixin):
     __tablename__ = "stories_comments"
 
     id = db.Column(db.Integer, primary_key=True)
-    story_id = db.Column(db.Integer, nullable=False)
-    comment_id = db.Column(db.Integer)
+    story_id = db.Column(db.Integer, db.ForeignKey("stories.id"), nullable=False)
+    comment_id = db.Column(db.Integer, db.ForeignKey("comments.id"))
 
 
 class CohortMessage(db.Model, SerializerMixin):
     __tablename__ = "cohorts_messages"
 
     id = db.Column(db.Integer, primary_key=True)
-    cohort_id = db.Column(db.Integer)
-    message_id = db.Column(db.Integer)
+    cohort_id = db.Column(db.Integer, db.ForeignKey("cohorts.id"))
+    message_id = db.Column(db.Integer, db.ForeignKey("messages.id"))
