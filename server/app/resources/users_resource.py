@@ -63,9 +63,9 @@ class UserLogin(Resource):
             if check_password_hash(user.to_dict()["password"], login_data["password"]):
                 return {"message": "Login Success"}, 200
             else:
-                return {"message": "invalid password"}
+                return {"message": "invalid details"},401
         else:
-            return {"message": "not found"}
+            return {"message": "invalid details"},401
 
 
 api.add_resource(UserRegister, "/add_user")
