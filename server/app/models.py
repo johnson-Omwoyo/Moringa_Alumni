@@ -15,7 +15,7 @@ class User(db.Model, SerializerMixin):
     phone = db.Column(db.String, nullable=True, unique=True)
     password = db.Column(db.String, nullable=False)
     course = db.Column(db.String, nullable=False, unique=False)
-    year_of_graduation = db.Column(db.String, nullable=False, unique=False)
+    year_of_graduation = db.Column(db.String, nullable=True, unique=False)
     gender = db.Column(db.String, nullable=True)
 
 

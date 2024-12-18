@@ -12,7 +12,7 @@ class UserResource(Resource):
         "email",
         "username",
         "phone",
-        "password"
+        "password",
         "course",
         "year_of_graduation",
         "gender",
@@ -23,14 +23,14 @@ class UserResource(Resource):
 
         for field in UserResource.fields:
             if field not in user_data:
-                return {"message": f"{field} is missing"}, 400
+                return {"message": f" {field} is missing"}, 400
 
         new_user = User(
             name=user_data["name"],
             email=user_data["email"],
             username=user_data["username"],
             phone=user_data.get("phone"),
-            password = user_data.get("password"),
+            password=user_data.get("password"),
             course=user_data.get("course"),
             year_of_graduation=user_data["year_of_graduation"],
             gender=user_data["gender"],
@@ -40,6 +40,11 @@ class UserResource(Resource):
         db.session.commit()
 
         return user_data, 201
+
+    def delete(self):
+        user = User.query.get_or_404(2)
+        db.session.delete(user)
+        db.session.commit()
 
 
 api.add_resource(UserResource, "/add_user")

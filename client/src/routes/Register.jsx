@@ -4,11 +4,13 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import animePhoto from "../assets/17f4ec064cad10da1739a11d9b293c09-removebg-preview.png";
+import axios from "axios";
 
 function Register() {
   const navigate = useNavigate();
   const [viewPassword, setViewPassword] = useState(false);
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false);
+  const base_url = "http://127.0.0.1:5000";
 
   const handleChangeViewPassword = (field, setter) => {
     setter(!field);
@@ -22,22 +24,37 @@ function Register() {
     username: Yup.string()
       .min(3, "Username too short")
       .required("Username required"),
-    profession: Yup.string().min(3, "Too short"),
+    course: Yup.string().required("Please select the course"),
 
     password: Yup.string().min(3, "Too short").required("Password required"),
     confirmpassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Confirm password is required"),
+      .required("Please Confirm your password"),
+    year_of_graduation: Yup.string().required(
+      "Please select the year you graduated"
+    ),
   });
-  const handleRegister = (values) => {
+  const handleRegister = async (values) => {
     console.log("The user details:", values);
+    try {
+      const response = await axios.post(`${base_url}/add_user`, values, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      console.log("Response:", response.data);
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
   };
   const initialValues = {
     name: "",
-    profession: "",
     email: "",
     username: "",
     password: "",
+    course: "",
+    year_of_graduation: "",
+    phone: "",
+    gender: "",
   };
   return (
     <div className="container">
@@ -131,45 +148,81 @@ function Register() {
                   />
                 </div>
                 <div>
-                <div className="position-relative">
-                  <Field
-                    type={viewConfirmPassword ? "text" : "password"}
-                    name="confirmpassword"
-                    placeholder="Confirm Password.."
-                    className="form-control"
-                    onChange={formik.handleChange}
-                  />{" "}
-                  <div
-                    className="the-eye position-absolute  end-0 translate-middle-y px-4 "
-                    onClick={() =>
-                      handleChangeViewPassword(
-                        viewConfirmPassword,
-                        setViewConfirmPassword
-                      )
-                    }
-                  >
-                    {viewConfirmPassword ? (
-                      <i class="fa-regular fa-eye-slash"></i>
-                    ) : (
-                      <i class="fa-regular fa-eye"></i>
-                    )}
-                  </div></div>
+                  <div className="position-relative">
+                    <Field
+                      type={viewConfirmPassword ? "text" : "password"}
+                      name="confirmpassword"
+                      placeholder="Confirm Password.."
+                      className="form-control"
+                      onChange={formik.handleChange}
+                    />{" "}
+                    <div
+                      className="the-eye position-absolute  end-0 translate-middle-y px-4 "
+                      onClick={() =>
+                        handleChangeViewPassword(
+                          viewConfirmPassword,
+                          setViewConfirmPassword
+                        )
+                      }
+                    >
+                      {viewConfirmPassword ? (
+                        <i class="fa-regular fa-eye-slash"></i>
+                      ) : (
+                        <i class="fa-regular fa-eye"></i>
+                      )}
+                    </div>
+                  </div>
                   <ErrorMessage
                     name="confirmpassword"
                     component="div"
                     className="error"
                   />
                 </div>
+                {/* The Select for the courses */}
                 <div>
                   <Field
-                    type="text"
-                    name="profession"
-                    placeholder="Profession.."
+                    as="select"
+                    name="course"
                     className="form-control"
                     onChange={formik.handleChange}
-                  />
+                  >
+                    <option value="" label="Select Course..." disabled />
+                    <option value="SE" label="Software Engineering" />
+                    <option value="DS" label="Data Science" />
+                    <option value="CS" label="Cyber Security" />
+                    <option value="TL" label="Team Lead" />
+                  </Field>
+
                   <ErrorMessage
-                    name="profession"
+                    name="course"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+                <div>
+                  <Field
+                    as="select"
+                    name="year_of_graduation"
+                    className="form-control"
+                    onChange={formik.handleChange}
+                  >
+                    <option value="" label="Year of graduation.." disabled />
+                    <option value="2014" label="2014" />
+                    <option value="2015" label="2015" />
+                    <option value="2016" label="2016" />
+                    <option value="2017" label="2017" />{" "}
+                    <option value="2024" label="2024" />
+                    <option value="2018" label="20218" />
+                    <option value="2019" label="2019" />
+                    <option value="2020" label="2020" />
+                    <option value="2021" label="2021" />
+                    <option value="2022" label="2022" />
+                    <option value="2023" label="2023" />
+                    <option value="2024" label="2024" />
+                  </Field>
+
+                  <ErrorMessage
+                    name="year_of_graduation"
                     component="div"
                     className="error"
                   />
