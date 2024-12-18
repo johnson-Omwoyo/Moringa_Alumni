@@ -8,7 +8,7 @@ bp = Blueprint("user", "UserResouce")
 api = Api(bp)
 
 
-class UserResource(Resource):
+class UserRegister(Resource):
     fields = [
         "name",
         "email",
@@ -23,7 +23,7 @@ class UserResource(Resource):
     def post(self):
         user_data = request.get_json()
 
-        for field in UserResource.fields:
+        for field in UserRegister.fields:
             if field not in user_data:
                 return {"message": f" {field} is missing"}, 400
         hashed_password = generate_password_hash(user_data.get("password"), 10)
@@ -43,7 +43,14 @@ class UserResource(Resource):
 
         return {"message": "Account Created"}, 201
 
-    def get(self):
+    def delete(self):
+        user = User.query.get_or_404(2)
+        db.session.delete(user)
+        db.session.commit()
+
+
+class UserLogin(Resource):
+    def post(self):
         login_data = request.get_json()
 
         user = User.query.filter(
@@ -53,17 +60,13 @@ class UserResource(Resource):
             )
         ).first()
         if user:
-            if check_password_hash(user.to_dict()["password"],login_data["password"]):
-                return user.to_dict()
+            if check_password_hash(user.to_dict()["password"], login_data["password"]):
+                return {"message": "Login Success"}, 200
             else:
                 return {"message": "invalid password"}
         else:
             return {"message": "not found"}
 
-    def delete(self):
-        user = User.query.get_or_404(2)
-        db.session.delete(user)
-        db.session.commit()
 
-
-api.add_resource(UserResource, "/add_user", "/login")
+api.add_resource(UserRegister, "/add_user")
+api.add_resource(UserLogin, "/login")

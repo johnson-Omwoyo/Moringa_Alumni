@@ -4,12 +4,22 @@ import { useNavigate } from "react-router-dom";
 import animePhoto from "../assets/17f4ec064cad10da1739a11d9b293c09-removebg-preview.png";
 import { Field, Form, ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
+  const base_url = "http://127.0.0.1:5000";
 
-  const handleLogin = (values) => {
+  const handleLogin = async (values) => {
     console.log(values);
+    try {
+      const response = await axios.post(`${base_url}/login`, values, {
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log("response", response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const initialValues = {
