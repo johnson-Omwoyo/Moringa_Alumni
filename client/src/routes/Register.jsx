@@ -40,7 +40,6 @@ function Register() {
       const response = await axios.post(`${base_url}/add_user`, values, {
         headers: { "Content-Type": "application/json" },
       });
-
       console.log("Response:", response.data);
     } catch (error) {
       console.error("Error posting data:", error);
