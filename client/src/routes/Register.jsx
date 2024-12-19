@@ -10,6 +10,9 @@ function Register() {
   const navigate = useNavigate();
   const [viewPassword, setViewPassword] = useState(false);
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false);
+  const [createdAccountAlert, setcreatedAccountAlert] = useState(false);
+  const [accountCreationFailedAlert, setAccountCreationFailed] =
+    useState(false);
   const base_url = "http://127.0.0.1:5000";
 
   const handleChangeViewPassword = (field, setter) => {
@@ -35,14 +38,27 @@ function Register() {
     ),
   });
   const handleRegister = async (values) => {
-    console.log("The user details:", values);
     try {
       const response = await axios.post(`${base_url}/add_user`, values, {
         headers: { "Content-Type": "application/json" },
       });
+      setcreatedAccountAlert(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+
       console.log("Response:", response.data);
+      
     } catch (error) {
-      console.error("Error posting data:", error);
+      if (error.response) {
+        let { data, status } = error.response;
+        console.log(data);
+        if (status == 400) {
+          setAccountCreationFailed(true);
+        }
+      } else {
+        console.log(error);
+      }
     }
   };
   const initialValues = {
@@ -61,6 +77,28 @@ function Register() {
         <div className="col-12 col-md-6 d-flex flex-column align-items-center py-5 ">
           <div className="the-title ">
             <h1 className="display-5 m-0">Get Started </h1>
+            {createdAccountAlert && (
+              <div
+                class="alert alert-success d-flex align-items-center justify-content-around"
+                role="alert"
+                style={{ maxHeight: "64px" }}
+              >
+                <i class="fa-solid fa-circle-check"></i>
+                <div>Registration Success</div>
+              </div>
+            )}
+            {accountCreationFailedAlert && (
+              <div
+                class="alert alert-danger d-flex align-items-center justify-content-around"
+                role="alert"
+                style={{ maxHeight: "64px" }}
+              >
+                <i class="fa-solid fa-circle-exclamation"></i>{" "}
+                <div className="d-flex flex-column">
+                  <p className="m-0">User Already Exist </p>
+                </div>{" "}
+              </div>
+            )}
             <p>
               Already Have An Account?{" "}
               <span className="the-link" onClick={() => navigate("/login")}>
@@ -79,6 +117,7 @@ function Register() {
                 className="form-group d-flex flex-column gap-4  rounded auth justify-content-center "
                 action=""
                 onSubmit={formik.handleSubmit}
+                onChange={() => setAccountCreationFailed(false)}
               >
                 <div>
                   <Field

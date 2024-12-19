@@ -3,6 +3,8 @@ from ..models import User, db
 from flask_restful import reqparse, Api, Resource
 from flask_bcrypt import check_password_hash, generate_password_hash
 from sqlalchemy import or_
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+from datetime import timedelta
 
 bp = Blueprint("user", "UserResouce")
 api = Api(bp)
@@ -26,25 +28,35 @@ class UserRegister(Resource):
         for field in UserRegister.fields:
             if field not in user_data:
                 return {"message": f" {field} is missing"}, 400
-        hashed_password = generate_password_hash(user_data.get("password"), 10)
-        new_user = User(
-            name=user_data["name"],
-            email=user_data["email"],
-            username=user_data["username"],
-            phone=user_data.get("phone"),
-            password=hashed_password,
-            course=user_data.get("course"),
-            year_of_graduation=user_data["year_of_graduation"],
-            gender=user_data["gender"],
-        )
+        user = User.query.filter(
+            or_(
+                User.email == user_data["email"],
+                User.username == user_data["username"],
+            )
+        ).first()
+        if user:
+            return {"message": "user already exist"}, 400
 
-        db.session.add(new_user)
-        db.session.commit()
+        else:
+            hashed_password = generate_password_hash(user_data.get("password"), 10)
+            new_user = User(
+                name=user_data["name"],
+                email=user_data["email"],
+                username=user_data["username"],
+                phone=user_data.get("phone"),
+                password=hashed_password,
+                course=user_data.get("course"),
+                year_of_graduation=user_data["year_of_graduation"],
+                gender=user_data["gender"],
+            )
+
+            db.session.add(new_user)
+            db.session.commit()
 
         return {"message": "Account Created"}, 201
 
     def delete(self):
-        user = User.query.get_or_404(2)
+        user = User.query.get_or_404(1)
         db.session.delete(user)
         db.session.commit()
 
@@ -60,12 +72,16 @@ class UserLogin(Resource):
             )
         ).first()
         if user:
-            if check_password_hash(user.to_dict()["password"], login_data["password"]):
-                return {"message": "Login Success"}, 200
+            user_data = user.to_dict()
+            if check_password_hash(user_data["password"], login_data["password"]):
+                access_token = create_access_token(
+                    str(user_data["id"]), expires_delta=timedelta(days=14)
+                )
+                return {"message": "Login Success", "access_token": access_token}, 200
             else:
-                return {"message": "invalid details"},401
+                return {"message": "invalid details"}, 401
         else:
-            return {"message": "invalid details"},401
+            return {"message": "invalid details"}, 401
 
 
 api.add_resource(UserRegister, "/add_user")

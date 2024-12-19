@@ -19,10 +19,12 @@ function Login() {
         headers: { "Content-Type": "application/json" },
       });
       setLoggedInAlert(true);
+
       setTimeout(() => {
         setLoggedInAlert(false);
       }, 3000);
       console.log("response", response.data);
+      localStorage.setItem("access_token", response.data["access_token"]);
     } catch (error) {
       let { data, status } = error.response;
       console.log(data);
