@@ -8,6 +8,7 @@ import Login from "./routes/Login";
 import Register from "./routes/Register";
 import The404 from "./components/The404";
 import ReadMore from "./routes/ReadMore";
+import UserDashboard from "./routes/UserDashboard";
 
 const routee = [
   {
@@ -40,6 +41,10 @@ const routee = [
       {
         path: "/read-more",
         element: <ReadMore />,
+      },
+      {
+        path: "/user-dashboard",
+        element: <UserDashboard />,
       },
     ],
   },

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access_token");
   return (
     <div>
       <Beforenav />
@@ -63,12 +64,21 @@ function Navbar() {
               </li>
             </ul>
             <div className="">
-              <button
-                className="btn register-btn rounded-pill "
-                onClick={() => navigate("/register")}
-              >
-                Join Us <i class="fa-solid fa-right-from-bracket"></i>
-              </button>
+              {accessToken ? (
+                <button
+                  className="btn register-btn"
+                  onClick={() => navigate("/user-dashboard")}
+                >
+                  <i class="fa-solid fa-user"></i>
+                </button>
+              ) : (
+                <button
+                  className="btn register-btn rounded-pill "
+                  onClick={() => navigate("/register")}
+                >
+                  Join Us <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+              )}
             </div>
           </div>
         </div>

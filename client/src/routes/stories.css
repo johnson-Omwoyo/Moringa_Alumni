@@ -21,6 +21,10 @@
   background: grey;
   cursor: not-allowed;
 }
+.selected:hover {
+  background-color: grey;
+  color: aliceblue;
+}
 .page-nav {
   cursor: pointer;
 }
