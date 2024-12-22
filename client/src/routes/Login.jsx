@@ -8,7 +8,7 @@ import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
-  const base_url = "http://127.0.0.1:5000";
+  const base_url = "http://192.168.8.3:5000";
   const [loggedInAlert, setLoggedInAlert] = useState(false);
   const [failedLoginAlert, setFailedLoginAlert] = useState(false);
 
@@ -22,6 +22,7 @@ function Login() {
 
       setTimeout(() => {
         setLoggedInAlert(false);
+        navigate("/")
       }, 3000);
       console.log("response", response.data);
       localStorage.setItem("access_token", response.data["access_token"]);

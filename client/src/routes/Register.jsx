@@ -13,7 +13,7 @@ function Register() {
   const [createdAccountAlert, setcreatedAccountAlert] = useState(false);
   const [accountCreationFailedAlert, setAccountCreationFailed] =
     useState(false);
-  const base_url = "http://127.0.0.1:5000";
+  const base_url = "http://192.168.8.3:5000";
 
   const handleChangeViewPassword = (field, setter) => {
     setter(!field);
@@ -48,7 +48,6 @@ function Register() {
       }, 2000);
 
       console.log("Response:", response.data);
-      
     } catch (error) {
       if (error.response) {
         let { data, status } = error.response;

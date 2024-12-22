@@ -6,6 +6,7 @@
   .userdash-sidebar {
     max-width: 120px;
     min-height: 640px;
+    border-radius: 1%;
   }
   .dashboard-add {
     left: 96%;
@@ -25,7 +26,7 @@
     left: 80%;
   }
   .dashboard-body {
-    height: 458px;
+    height: 720px;
   }
 }
 .userdash-sidebar .selected {
@@ -51,9 +52,12 @@
 .dashboard-add:hover {
 }
 .dashboard-body {
-  border: #b4b3b3 1px solid;
   overflow-y: scroll;
 }
 .dashboard-body::-webkit-scrollbar {
   display: none;
+}
+.empty p {
+  color: grey;
+  font-style: italic;
 }

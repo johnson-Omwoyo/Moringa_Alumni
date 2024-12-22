@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./cohorts.css";
+import { use } from "react";
 
 function Cohorts() {
   const [groupCategory, setGroupCategory] = useState("all");
-  const [groupDetails, setGroupDetails] = useState(false);
+
+  const groupDetail = localStorage.getItem("groupDetail") || false;
+  const [groupDetails, setGroupDetails] = useState(groupDetail);
+  console.log(groupDetails);
+  useEffect(() => {
+    localStorage.setItem("groupDetail", groupDetails);
+  }, [groupDetails]);
+
   const [yourCohorts, setYourCohorts] = useState(true);
   const [whatCohortsSelector, setWhatCohortsSelector] = useState(false);
   const [text, setText] = useState("");
 
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  // Function to check if the screen is small
-  const checkScreenSize = () => {
-    if (window.innerWidth <= 768) {
-      setIsSmallScreen(true);
-    } else {
-      setIsSmallScreen(false);
-    }
-  };
-
-  // Listen for screen resize
+  const thePage = localStorage.getItem("selectedPage") || "cohorts";
+  const [selectedPage, setSelectedPage] = useState(thePage);
   useEffect(() => {
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
+    localStorage.setItem("selectedPage", selectedPage);
+  }, [selectedPage]);
 
   const handleGroupCategory = (clickedSection) => {
     setWhatCohortsSelector(false);
@@ -149,18 +145,21 @@ function Cohorts() {
       return names[0].slice(0, 1).concat(names[1].slice(0, 1)).toUpperCase();
     }
   };
+  const handleJoinCohort = () => {
+    setSelectedPage("chat-box");
+  };
   return (
     <div className="container-fluid mb-md-5">
       <div className="row">
-        <div className="col-12 col-md-3 main-col rounded m-md-3 p-4 position-relative ">
+        <div
+          className={`col-12 col-md-3 main-col rounded m-md-3 p-4 position-relative d-md-inline ${
+            selectedPage == "cohorts" ? "d-block" : "d-none"
+          }`}
+        >
           <div className="d-flex justify-content-between">
             <div className="d-flex gap-3 align-items-center mb-4">
               <div>
-                <h2 className="group-prof rounded-pill p-2">JO</h2>
-              </div>
-              <div>
-                <h3 className="account-owner fs-5 m-0">Johnson Omwoyo</h3>
-                <p className="info-account m-0 ">Info Account</p>
+                <h3 className="account-owner fs-5 m-o">Discussions</h3>
               </div>
             </div>
             <button
@@ -195,7 +194,7 @@ function Cohorts() {
             <button
               className={
                 groupCategory == "all"
-                  ? "btn  rounded-pill px-md-4 active-category"
+                  ? "btn  rounded-pill px-md-4 selected"
                   : "btn  rounded-pill px-md-4"
               }
               onClick={() => handleGroupCategory("all")}
@@ -205,7 +204,7 @@ function Cohorts() {
             <button
               className={
                 groupCategory == "public"
-                  ? "btn  rounded-pill px-md-4 active-category"
+                  ? "btn  rounded-pill px-md-4 selected"
                   : "btn  rounded-pill px-md-4"
               }
               onClick={() => handleGroupCategory("public")}
@@ -215,7 +214,7 @@ function Cohorts() {
             <button
               className={
                 groupCategory == "private"
-                  ? "btn  rounded-pill px-md-4 active-category"
+                  ? "btn  rounded-pill px-md-4 selected"
                   : "btn  rounded-pill px-md-4"
               }
               onClick={() => handleGroupCategory("private")}
@@ -250,7 +249,10 @@ function Cohorts() {
                             {" "}
                             {group.category}
                           </span>
-                          <button className="btn join-group rounded-pill">
+                          <button
+                            className="btn join-group rounded-pill"
+                            onClick={handleJoinCohort}
+                          >
                             {group.category == "private"
                               ? " Request Join"
                               : "Join Now"}
@@ -277,20 +279,35 @@ function Cohorts() {
             )}
           </div>
         </div>
-        <div className="col-12 col-md-6 main-col p-4 m-md-3 rounded position-relative ">
+        <div
+          className={`col-12 col-md-6 main-col p-4 m-md-3 rounded position-relative d-md-inline ${
+            selectedPage == "chat-box" ? "d-block" : "d-none"
+          }`}
+        >
           <div className="d-flex justify-content-between">
-            <div
-              className="d-flex gap-3 align-items-center "
-              onClick={() => setGroupDetails(true)}
-            >
-              <div>
-                <h2 className="group-prof rounded-pill p-2">
-                  {namesAbbrev("clean codes")}
-                </h2>
+            <div className="d-flex gap-3 align-items-center ">
+              <div
+                className="back-cohorts p-2 rounded text-center d-flex align-items-center d-md-none"
+                onClick={() => setSelectedPage("cohorts")}
+              >
+                <i class="fa-solid fa-angle-left"></i>
               </div>
-              <div>
-                <h3 className="account-owner fs-5 m-0">Group Name</h3>
-                <p className="info-account m-0 ">the info</p>
+              <div
+                onClick={() => {
+                  setGroupDetails(true);
+                  setSelectedPage("");
+                }}
+                className="d-flex gap-3 align-items-center "
+              >
+                <div>
+                  <h2 className="group-prof rounded-pill p-2">
+                    {namesAbbrev("clean codes")}
+                  </h2>
+                </div>
+                <div>
+                  <h3 className="account-owner fs-5 m-0">Group Name</h3>
+                  <p className="info-account m-0 ">the info</p>
+                </div>
               </div>
             </div>
             <div>
@@ -307,14 +324,12 @@ function Cohorts() {
           </div>
           <hr />
           <div className="groups-container " id="chatContainer">
-            <div className="d-flex flex-column  gap-2 ">
+            <div className="d-flex flex-column  gap-2 mb-5 mb-md-0">
               {messages.map((message) => (
                 <div
-                  className={
-                    message.yours
-                      ? `message-container d-block  px-3 py-1 rounded ms-auto your-message`
-                      : `message-container d-block  px-3 py-1 rounded `
-                  }
+                  className={`message-container d-block  px-3 py-1  rounded ${
+                    message.yours && "ms-auto your-message "
+                  }`}
                 >
                   <div className="d-flex justify-content-between mx-2">
                     <p className="m-0 me-4">
@@ -358,7 +373,7 @@ function Cohorts() {
             </div>
           </div>
         </div>
-        {groupDetails && (
+        {groupDetails == true && (
           <div className="col main-col rounded m-3 p-4 ">
             <div className="d-flex justify-content-between">
               <div className="d-flex gap-3 align-items-center ">
@@ -367,7 +382,13 @@ function Cohorts() {
                 </div>
               </div>
               <div>
-                <button className="btn" onClick={() => setGroupDetails(false)}>
+                <button
+                  className="btn"
+                  onClick={() => {
+                    setGroupDetails(false);
+                    setSelectedPage("chat-box");
+                  }}
+                >
                   <i class="fa-solid fa-x"></i>{" "}
                 </button>
               </div>
