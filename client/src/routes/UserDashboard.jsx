@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./userdashboard.css";
 import logo from "../assets/Moringa-logo.png";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import the_avatar from "../assets/avatar-user-profile.jpg";
 function UserDashboard() {
   let [selected, setSelected] = useState("profile");
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ function UserDashboard() {
   if (!token) {
     return <Navigate to="/" />;
   }
+  const setup = 60;
   return (
     <div className="container-fluid py-3 p-md-5 ">
       <div className="row ">
@@ -34,6 +36,7 @@ function UserDashboard() {
             >
               <i class="fa-solid fa-satellite-dish"></i>
             </button>
+
             <button
               className={`btn ${selected == "news" && "selected"}`}
               onClick={() => setSelected("news")}
@@ -77,13 +80,58 @@ function UserDashboard() {
                     : "Your Cohorts"}
                 </h1>
               </div>
-              <div className="col-12 my-3 dashboard-body rounded">
-                <div className="container-fluid">
+              <div className="col-12 my-3 dashboard-body rounded ">
+                <div className="container-fluid  p-md-5">
+                  {/*The profile part */}
                   {selected == "profile" && (
                     <div className="row">
-                      <div className="col">this is the profile</div>
+                      <div className="col">
+                        <div className="d-flex flex-column the-profile  p-2 align-items-center mb-md-5 ">
+                          <div className="d-flex gap-3  ">
+                            <img
+                              className="img-fluid rounded-pill the-avatar"
+                              src={the_avatar}
+                              alt=""
+                            />
+                            <div className="d-flex flex-column justify-content-center">
+                              <p className="m-0">user</p>
+                              <p className="m-0 user-email">useremail.com</p>
+                            </div>
+                          </div>
+                          <button className="btn register-btn rounded-pill px-4 w-10 ">
+                            Edit
+                          </button>
+                        </div>
+                        <div className=" account-setup p-4 rounded gap-3">
+                          <p>Account setup</p>{" "}
+                          <div className="progress ">
+                            <div
+                              class="progress-bar bg-success"
+                              role="progressbar"
+                              style={{ width: `${setup}%` }}
+                              aria-valuenow="25"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                            {setup == 100 || `${setup}%`}
+                          </div>
+                          <div>
+                            {setup == 100 ? (
+                              <i class="fa-solid fa-circle-check text-success"></i>
+                            ) : (
+                              <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                            )}
+                          </div>
+                          {setup == 100 || (
+                            <button className="btn rounded-pill btn-warning ">
+                              Finish Setup
+                            </button>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   )}
+                  {/*The stories part */}
                   {selected == "stories" && (
                     <div className="row">
                       <div className="col p-5">
@@ -116,6 +164,7 @@ function UserDashboard() {
                       </div>
                     </div>
                   )}{" "}
+                  {/*The cohorts part */}
                   {selected == "cohorts" && (
                     <div className="row">
                       <div className="col p-5 ">
@@ -132,6 +181,7 @@ function UserDashboard() {
                       </div>
                     </div>
                   )}
+                  {/*The events part */}
                   {selected == "events" && (
                     <div className="row">
                       <div className="col p-5 ">
