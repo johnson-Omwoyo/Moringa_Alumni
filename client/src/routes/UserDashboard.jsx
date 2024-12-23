@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./userdashboard.css";
 import logo from "../assets/Moringa-logo.png";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import the_avatar from "../assets/avatar-user-profile.jpg";
 function UserDashboard() {
-  let [selected, setSelected] = useState("profile");
+  let theSelected = localStorage.getItem("theUserDashboardSelected");
+  let [selected, setSelected] = useState(theSelected);
+
+  useEffect(() => {
+    localStorage.setItem("theUserDashboardSelected", selected);
+  }, [selected]);
+
+  const [yourDiscussion, setYourDiscussion] = useState("the discussion");
+  const [yourStories, setYourStories] = useState("the Stories");
+  const [yourEvents, setYourEvents] = useState("the events");
+  const [yourNews, setYourNews] = useState("The news");
+
   const navigate = useNavigate();
   let handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -14,7 +25,7 @@ function UserDashboard() {
   if (!token) {
     return <Navigate to="/" />;
   }
-  const setup = 60;
+  const setup = 90;
   return (
     <div className="container-fluid py-3 p-md-5 ">
       <div className="row ">
@@ -112,8 +123,9 @@ function UserDashboard() {
                               aria-valuenow="25"
                               aria-valuemin="0"
                               aria-valuemax="100"
-                            ></div>
-                            {setup == 100 || `${setup}%`}
+                            >
+                              {setup == 100 || `${setup}%`}
+                            </div>
                           </div>
                           <div>
                             {setup == 100 ? (
@@ -136,32 +148,39 @@ function UserDashboard() {
                     <div className="row">
                       <div className="col p-5">
                         {" "}
-                        <div className="d-flex empty flex-column align-items-center">
-                          <p>No Stories </p>
-                          <button
-                            className="btn btn-danger"
-                            // onClick={() => setYourCohorts(false)}
-                          >
-                            Add Story{" "}
-                          </button>
-                        </div>
+                        {yourStories ? (
+                          <>the story</>
+                        ) : (
+                          <div className="d-flex empty flex-column align-items-center">
+                            <p>No Stories </p>
+                            <button
+                              className="btn btn-danger"
+                              // onClick={() => setYourCohorts(false)}
+                            >
+                              Add Story{" "}
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}{" "}
                   {selected == "news" && (
                     <div className="row">
                       <div className="col p-5">
-                        {" "}
-                        <div className="d-flex empty flex-column align-items-center">
-                          <p>No news </p>
-                          <button
-                            className="btn btn-danger"
-                            // onClick={() => setYourCohorts(false)}
-                          >
-                            Add News{" "}
-                          </button>
-                        </div>
-                      </div>
+                        {yourNews ? (
+                          <>the news</>
+                        ) : (
+                          <div className="d-flex empty flex-column align-items-center">
+                            <p>No news </p>
+                            <button
+                              className="btn btn-danger"
+                              // onClick={() => setYourCohorts(false)}
+                            >
+                              Add News{" "}
+                            </button>
+                          </div>
+                        )}
+                      </div>{" "}
                     </div>
                   )}{" "}
                   {/*The cohorts part */}
@@ -169,15 +188,19 @@ function UserDashboard() {
                     <div className="row">
                       <div className="col p-5 ">
                         {" "}
-                        <div className="d-flex empty flex-column align-items-center">
-                          <p>No Cohorts </p>
-                          <button
-                            className="btn btn-danger"
-                            // onClick={() => setYourCohorts(false)}
-                          >
-                            Add Cohort
-                          </button>{" "}
-                        </div>
+                        {yourDiscussion ? (
+                          <>the discussion</>
+                        ) : (
+                          <div className="d-flex empty flex-column align-items-center">
+                            <p>No Cohorts </p>
+                            <button
+                              className="btn btn-danger"
+                              // onClick={() => setYourCohorts(false)}
+                            >
+                              Add Cohort
+                            </button>{" "}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -186,15 +209,19 @@ function UserDashboard() {
                     <div className="row">
                       <div className="col p-5 ">
                         {" "}
-                        <div className="d-flex empty flex-column align-items-center">
-                          <p>No Events </p>
-                          <button
-                            className="btn btn-danger"
-                            // onClick={() => setYourCohorts(false)}
-                          >
-                            Add Event
-                          </button>{" "}
-                        </div>
+                        {yourEvents ? (
+                          <>the events</>
+                        ) : (
+                          <div className="d-flex empty flex-column align-items-center">
+                            <p>No Events </p>
+                            <button
+                              className="btn btn-danger"
+                              // onClick={() => setYourCohorts(false)}
+                            >
+                              Add Event
+                            </button>{" "}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
