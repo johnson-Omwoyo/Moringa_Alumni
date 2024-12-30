@@ -3,7 +3,12 @@ import "./cohorts.css";
 import { use } from "react";
 
 function Cohorts() {
-  const [groupCategory, setGroupCategory] = useState("all");
+  let theGroupCategory = localStorage.getItem("cohortGroupCategory") || "all";
+  const [groupCategory, setGroupCategory] = useState(theGroupCategory);
+
+  useEffect(() => {
+    localStorage.setItem("cohortGroupCategory", groupCategory);
+  }, [groupCategory]);
 
   const groupDetail = localStorage.getItem("groupDetail") || false;
   const [groupDetails, setGroupDetails] = useState(groupDetail);
@@ -12,7 +17,12 @@ function Cohorts() {
     localStorage.setItem("groupDetail", groupDetails);
   }, [groupDetails]);
 
-  const [yourCohorts, setYourCohorts] = useState(true);
+  const your_cohorts = localStorage.getItem("your_cohorts")||false;
+  const [yourCohorts, setYourCohorts] = useState(your_cohorts);
+  useEffect(() => {
+    localStorage.setItem("your_cohorts", yourCohorts);
+  }, [yourCohorts]);
+
   const [whatCohortsSelector, setWhatCohortsSelector] = useState(false);
   const [text, setText] = useState("");
 
@@ -305,12 +315,12 @@ function Cohorts() {
                   </h2>
                 </div>
                 <div>
-                  <h3 className="account-owner fs-5 m-0">Group Name</h3>
+                  <h3 className="account-owner fs-5 m-0">Discussion Name</h3>
                   <p className="info-account m-0 ">the info</p>
                 </div>
               </div>
             </div>
-            <div>
+            <div className=" position-relative">
               <button className="btn">
                 <i class="fa-solid fa-video"></i>
               </button>
@@ -320,6 +330,32 @@ function Cohorts() {
               <button className="btn">
                 <i class="fa-solid fa-ellipsis-vertical"></i>
               </button>
+              {whatCohortsSelector && (
+                <div
+                  style={{ top: "10%", right: "1%" }}
+                  className="position-absolute end-1 p-3 list-types rounded"
+                >
+                  <p
+                    className={yourCohorts ? "p-2 selected rounded" : "p-2 "}
+                    onClick={() => handleWhatYourCohortSelector(true)}
+                  >
+                    Share Discussion{" "}
+                  </p>
+                  <p
+                    className={yourCohorts ? "p-2 selected rounded" : "p-2 "}
+                    onClick={() => handleWhatYourCohortSelector(true)}
+                  >
+                    Leave Disussion{" "}
+                  </p>
+                  <hr className="m-0 p-0" />
+                  <p
+                    className={yourCohorts ? "p-2 " : "p-2 selected  rounded "}
+                    onClick={() => handleWhatYourCohortSelector(false)}
+                  >
+                    Report Discussion{" "}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
           <hr />
@@ -396,7 +432,7 @@ function Cohorts() {
             <hr />
             <div className="d-flex flex-column align-items-center">
               <h2 className="group-prof rounded-pill p-2">GN</h2>
-              <h3 className="account-owner fs-5 m-0">Group Name</h3>
+              <h3 className="account-owner fs-5 m-0">Discussion Name</h3>
             </div>
             <div className="mb-2">
               <p className=" group-name fs-6">Description</p>
