@@ -4,7 +4,8 @@ import logo from "../assets/Moringa-logo.png";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import the_avatar from "../assets/avatar-user-profile.jpg";
 function UserDashboard() {
-  let theSelected = localStorage.getItem("theUserDashboardSelected");
+  let theSelected =
+    localStorage.getItem("theUserDashboardSelected") || "profile";
   let [selected, setSelected] = useState(theSelected);
 
   useEffect(() => {
