@@ -6,21 +6,25 @@ function Cohorts() {
   let theGroupCategory = localStorage.getItem("cohortGroupCategory") || "all";
   const [groupCategory, setGroupCategory] = useState(theGroupCategory);
 
+  const [selectDiscussionActivity, setSelectDiscussionActivity] =
+    useState(false);
+
   useEffect(() => {
     localStorage.setItem("cohortGroupCategory", groupCategory);
   }, [groupCategory]);
 
   const groupDetail = localStorage.getItem("groupDetail") || false;
   const [groupDetails, setGroupDetails] = useState(groupDetail);
-  console.log(groupDetails);
+
   useEffect(() => {
     localStorage.setItem("groupDetail", groupDetails);
   }, [groupDetails]);
 
-  const your_cohorts = localStorage.getItem("your_cohorts")||false;
+  const your_cohorts = localStorage.getItem("your_cohorts") || true;
   const [yourCohorts, setYourCohorts] = useState(your_cohorts);
   useEffect(() => {
     localStorage.setItem("your_cohorts", yourCohorts);
+    console.log(yourCohorts);
   }, [yourCohorts]);
 
   const [whatCohortsSelector, setWhatCohortsSelector] = useState(false);
@@ -41,6 +45,27 @@ function Cohorts() {
     setTimeout(() => {
       setWhatCohortsSelector(false);
     }, 500);
+  };
+  const handleDiscussionShare = () => {
+    let textToCopy = "the link";
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(textToCopy)
+        .then(function () {
+          alert("link copied paste to share");
+        })
+        .catch(function (error) {
+          console.error("Error copying text: ", error);
+        });
+    } else {
+      const textarea = document.createElement("textarea");
+      textarea.value = textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      alert("link copied paste to share");
+    }
   };
   const messagess = [
     {
@@ -148,7 +173,7 @@ function Cohorts() {
   };
   const namesAbbrev = (groupName) => {
     const names = groupName.split(" ");
-    console.log(names);
+
     if (names.length == 1) {
       return names[0].slice(0, 2).toUpperCase();
     } else if (names.length > 1) {
@@ -157,6 +182,9 @@ function Cohorts() {
   };
   const handleJoinCohort = () => {
     setSelectedPage("chat-box");
+  };
+  const handleSelectDiscussionActivity = (value) => {
+    setSelectDiscussionActivity(value);
   };
   return (
     <div className="container-fluid mb-md-5">
@@ -185,14 +213,14 @@ function Cohorts() {
               className="position-absolute end-1 p-3 list-types rounded"
             >
               <p
-                className={yourCohorts ? "p-2 selected rounded" : "p-2 "}
+                className={`p-2 ${yourCohorts && "selected"} rounded`}
                 onClick={() => handleWhatYourCohortSelector(true)}
               >
                 Your cohorts
               </p>
-              <hr className="m-0 p-0" />
+
               <p
-                className={yourCohorts ? "p-2 " : "p-2 selected  rounded "}
+                className={`p-2 ${yourCohorts || "selected"} rounded`}
                 onClick={() => handleWhatYourCohortSelector(false)}
               >
                 Explore cohorts
@@ -235,47 +263,91 @@ function Cohorts() {
 
           <div className=" groups-container">
             {groupsToDisplay.length ? (
-              groupsToDisplay.map((group) => (
-                <>
-                  {" "}
-                  <div
-                    className={`d-flex gap-3 ${
-                      group.category == "private" &&
-                      !yourCohorts &&
-                      "private-cohort"
-                    }`}
-                  >
-                    <div>
-                      <h2 className="group-prof rounded-pill p-2">
-                        {namesAbbrev(group.name)}
-                      </h2>
-                    </div>
-                    <div className=" gap-2 d-flex flex-column">
-                      <p className="m-0 group-name fs-6">{group.name}</p>
+              <>
+                {yourCohorts
+                  ? groupsToDisplay.map((group) => (
+                      <>
+                        {" "}
+                        <div
+                          className={`d-flex gap-3 ${
+                            group.category == "private" &&
+                            !yourCohorts &&
+                            "private-cohort"
+                          }`}
+                        >
+                          <div>
+                            <h2 className="group-prof rounded-pill p-2">
+                              {namesAbbrev(group.name)}
+                            </h2>
+                          </div>
+                          <div className=" gap-2 d-flex flex-column">
+                            <p className="m-0 group-name fs-6">{group.name}</p>
 
-                      {!yourCohorts ? (
-                        <div className="d-flex justify-content-between gap-2 align-items-center">
-                          <span className="group-category rounded-pill px-2">
-                            {" "}
-                            {group.category}
-                          </span>
-                          <button
-                            className="btn join-group rounded-pill"
-                            onClick={handleJoinCohort}
-                          >
-                            {group.category == "private"
-                              ? " Request Join"
-                              : "Join Now"}
-                          </button>
+                            {!yourCohorts ? (
+                              <div className="d-flex justify-content-between gap-2 align-items-center">
+                                <span className="group-category rounded-pill px-2">
+                                  {" "}
+                                  {group.category}
+                                </span>
+                                <button
+                                  className="btn join-group rounded-pill"
+                                  onClick={handleJoinCohort}
+                                >
+                                  {group.category == "private"
+                                    ? " Request Join"
+                                    : "Join Now"}
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="">Last message</div>
+                            )}
+                          </div>
                         </div>
-                      ) : (
-                        <div>Last message</div>
-                      )}
-                    </div>
-                  </div>
-                  <hr />
-                </>
-              ))
+                        <hr />
+                      </>
+                    ))
+                  : groupsToDisplay.map((group) => (
+                      <>
+                        {" "}
+                        <div
+                          className={`d-flex gap-3 ${
+                            group.category == "private" &&
+                            !yourCohorts &&
+                            "private-cohort"
+                          }`}
+                        >
+                          <div>
+                            <h2 className="group-prof rounded-pill p-2">
+                              {namesAbbrev(group.name)}
+                            </h2>
+                          </div>
+                          <div className=" gap-2 d-flex flex-column">
+                            <p className="m-0 group-name fs-6">{group.name}</p>
+
+                            {!yourCohorts ? (
+                              <div className="d-flex justify-content-between gap-2 align-items-center">
+                                <span className="group-category rounded-pill px-2">
+                                  {" "}
+                                  {group.category}
+                                </span>
+                                <button
+                                  className="btn join-group rounded-pill"
+                                  onClick={handleJoinCohort}
+                                >
+                                  {group.category == "private"
+                                    ? " Request Join"
+                                    : "Join Now"}
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="">Last message</div>
+                            )}
+                          </div>
+                        </div>
+                        <hr />
+                      </>
+                    ))}
+              </>
             ) : (
               <div className="d-flex flex-column align-items-center">
                 <p>No Cohorts </p>
@@ -294,7 +366,7 @@ function Cohorts() {
             selectedPage == "chat-box" ? "d-block" : "d-none"
           }`}
         >
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between  position-relative">
             <div className="d-flex gap-3 align-items-center ">
               <div
                 className="back-cohorts p-2 rounded text-center d-flex align-items-center d-md-none"
@@ -320,40 +392,52 @@ function Cohorts() {
                 </div>
               </div>
             </div>
-            <div className=" position-relative">
+            <div className="">
               <button className="btn">
                 <i class="fa-solid fa-video"></i>
               </button>
               <button className="btn">
                 <i class="fa-solid fa-phone"></i>
               </button>
-              <button className="btn">
+              <button
+                className="btn"
+                onClick={() => handleSelectDiscussionActivity(true)}
+              >
                 <i class="fa-solid fa-ellipsis-vertical"></i>
               </button>
-              {whatCohortsSelector && (
+              {selectDiscussionActivity && (
                 <div
-                  style={{ top: "10%", right: "1%" }}
-                  className="position-absolute end-1 p-3 list-types rounded"
+                  style={{ top: "60%", right: "1%" }}
+                  className="position-absolute end-1 p-3 list-types rounded d-flex flex-column"
                 >
-                  <p
-                    className={yourCohorts ? "p-2 selected rounded" : "p-2 "}
-                    onClick={() => handleWhatYourCohortSelector(true)}
+                  <button
+                    className={`p-2 rounded bg-none btn text-white`}
+                    onClick={() => {
+                      handleDiscussionShare();
+                      handleSelectDiscussionActivity(false);
+                    }}
                   >
-                    Share Discussion{" "}
-                  </p>
-                  <p
-                    className={yourCohorts ? "p-2 selected rounded" : "p-2 "}
-                    onClick={() => handleWhatYourCohortSelector(true)}
+                    Share{" "}
+                  </button>
+                  <button
+                    className={`p-2 rounded bg-none btn text-white`}
+                    onClick={() => {
+                      handleSelectDiscussionActivity(false);
+                    }}
+                    role="button"
                   >
-                    Leave Disussion{" "}
-                  </p>
-                  <hr className="m-0 p-0" />
-                  <p
-                    className={yourCohorts ? "p-2 " : "p-2 selected  rounded "}
-                    onClick={() => handleWhatYourCohortSelector(false)}
+                    Leave{" "}
+                  </button>
+
+                  <button
+                    className="p-2 rounded bg-none btn text-white "
+                    onClick={() => {
+                      handleSelectDiscussionActivity(false);
+                    }}
+                    role="button"
                   >
-                    Report Discussion{" "}
-                  </p>
+                    Report{" "}
+                  </button>
                 </div>
               )}
             </div>
@@ -400,7 +484,7 @@ function Cohorts() {
                 <button
                   type="submit"
                   className={`btn send-msg rounded-pill position-absolute top-50 end-0 translate-middle-y px-4 ${
-                    text === "" && "disabled"
+                    text.trim() === "" && "disabled"
                   }`}
                 >
                   <i class="fa-regular fa-paper-plane"></i>

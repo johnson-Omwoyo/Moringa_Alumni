@@ -55,6 +55,9 @@ class UserRegister(Resource):
 
         return {"message": "Account Created"}, 201
 
+    def get():
+        return "Hello World"
+
     def delete(self):
         user = User.query.get_or_404(1)
         db.session.delete(user)
@@ -74,8 +77,17 @@ class UserLogin(Resource):
         if user:
             user_data = user.to_dict()
             if check_password_hash(user_data["password"], login_data["password"]):
+                user_data.pop("password")
+                user_details = {
+                    "name": user_data["name"],
+                    "email": user_data["email"],
+                    "username": user_data["username"],
+                    "phone": user_data["phone"],
+                    "course": user_data["course"],
+                    "year_of_graduation": user_data["year_of_graduation"],
+                }
                 access_token = create_access_token(
-                    str(user_data["id"]), expires_delta=timedelta(days=14)
+                    user_data, expires_delta=timedelta(days=14)
                 )
                 return {"message": "Login Success", "access_token": access_token}, 200
             else:

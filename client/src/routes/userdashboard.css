@@ -49,16 +49,14 @@
   max-width: fit-content;
   cursor: pointer;
   border: white 1px solid;
-  transition: all 0.1s;
-
+  /* transition: all 0.1s; */
 }
 .dashboard-add:hover {
   background: linear-gradient(to left, #182949, rgb(251, 250, 250));
-
 }
-.dashboard-add:active{
-  background: none;
-  border: #182949 1px solid;
+.dashboard-add:active {
+  /* background: none; */
+  border: #243555 1px solid;
 }
 .dashboard-body {
   overflow-y: scroll;

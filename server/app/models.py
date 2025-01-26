@@ -18,6 +18,8 @@ class User(db.Model, SerializerMixin):
     year_of_graduation = db.Column(db.String, nullable=True, unique=False)
     gender = db.Column(db.String, nullable=True)
 
+    serialize_rules = ("-year_of_graduation ",)
+
 
 class Cohort(db.Model, SerializerMixin):
     __tablename__ = "cohorts"

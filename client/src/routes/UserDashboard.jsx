@@ -19,7 +19,7 @@ function UserDashboard() {
 
   const navigate = useNavigate();
   let handleLogout = () => {
-    localStorage.removeItem("access_token");
+    localStorage.clear();
     navigate("/login");
   };
   const token = localStorage.getItem("access_token");
@@ -232,8 +232,8 @@ function UserDashboard() {
           </div>
         </div>
         {selected == "profile" || (
-          <div className="position-fixed dashboard-add  py-2  rounded-pill">
-            <i class="fa-solid fa-plus fs-1"></i>
+          <div className="position-fixed dashboard-add  py-2  rounded-pill shadow">
+            <i class="fa-solid fa-plus fs-1 "></i>
           </div>
         )}
       </div>
