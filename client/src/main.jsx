@@ -8,7 +8,6 @@ import { HashRouter } from "react-router-dom";
 const route = createBrowserRouter(routee);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <HashRouter>
-    <RouterProvider router={route} />
-  </HashRouter>
+  <RouterProvider router={route} />
+
 );
