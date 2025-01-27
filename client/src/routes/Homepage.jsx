@@ -121,11 +121,10 @@ function Homepage() {
         <div className="col position-relative p-0">
           <img
             style={{ objectFit: "cover", maxHeight: "420px" }}
-            src="https://i.ytimg.com/vi/oqJRVZdNEY8/maxresdefault.jpg"
+            src="https://images.unsplash.com/photo-1461280360983-bd93eaa5051b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
             className="img-fluid w-100  p-0 m-0"
           />
-      
         </div>
       </div>
       <div className="row px-4 d-flex justify-content-around even p-5 gap-3 ">
@@ -199,8 +198,6 @@ function Homepage() {
                 </div>
               ))}
             </div>
-
-          
           </div>
         </div>
       </div>{" "}
